@@ -1,0 +1,85 @@
+﻿
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container col-md-offset-4">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="form-group">
+                    <br />
+                    <h2>Kata Baby Sitter Solution</h2>
+                    <div class="col-md-2">
+                        <strong>Start Time: </strong>
+                        <select id="startSelect" class="form-control">
+                            <option value="5"> 5:00 PM</option>
+                            <option value="6"> 6:00 PM</option>
+                            <option value="7"> 7:00 PM</option>
+                            <option value="8"> 8:00 PM</option>
+                            <option value="9"> 9:00 PM</option>
+                            <option value="10"> 10:00 PM</option>
+                            <option value="11"> 11:00 PM</option>
+                            <option value="12"> 12:00 PM</option>
+                            <option value="1"> 1:00 AM</option>
+                            <option value="2"> 2:00 AM</option>
+                            <option value="3"> 3:00 AM</option>
+                            <option value="4"> 4:00 AM</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <strong>End Time: </strong>
+                        <select id="endSelect" class="form-control">
+                            <option value="5"> 5:00 PM</option>
+                            <option value="6"> 6:00 PM</option>
+                            <option value="7"> 7:00 PM</option>
+                            <option value="8"> 8:00 PM</option>
+                            <option value="9"> 9:00 PM</option>
+                            <option value="10"> 10:00 PM</option>
+                            <option value="11"> 11:00 PM</option>
+                            <option value="12"> 12:00 PM</option>
+                            <option value="1"> 1:00 AM</option>
+                            <option value="2"> 2:00 AM</option>
+                            <option value="3"> 3:00 AM</option>
+                            <option value="4"> 4:00 AM</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-offset-2 col-md-10">
+                        <br />
+                        <button id="test" class="btn-lg btn-success"> Click me</button>
+                        <h3 id="result" class="btn-group-lg"></h3>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('#test').click(function () {
+            var url = "http://localhost:63411/api/CalculateTime";
+            var start = $('#startSelect').val();
+            var end = $('#endSelect').val();
+            var data = { "StartTime": start, "EndTime": end }
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: 'json',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                success: function (response) {
+                    $('#result').html(response)
+                },
+                error: function (error) {
+                    console.log("Something went wrong", error);
+                }
+            });
+        });
+
+    </script>
+}
