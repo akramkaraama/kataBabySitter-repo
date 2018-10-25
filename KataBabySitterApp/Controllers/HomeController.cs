@@ -16,22 +16,8 @@ namespace KataBabySitterApp.Controllers
     {
         public IActionResult Index()
         {
-    
-
-            //List<SelectListItem> workHoursList = new List<SelectListItem>();
-
-            //foreach(int cal in calObj)
-            //{
-            //    workHoursList.Add(new SelectListItem { Text = cal.ToString(), Value = cal.ToString() });
-            //}
-
-       
-
             return View();
         }
-
-
-
 
         public IActionResult Error()
         {
